@@ -35,6 +35,8 @@ class User implements EntityInterface
             $stmt->execute();
         };
 
+        $conn->close();
+
     }
 
     public function create()
@@ -81,6 +83,8 @@ class User implements EntityInterface
 
         $this->setRole(json_decode($user->role, true));
 
+        $conn->close();
+
     }
 
     public function update(int $id)
@@ -101,6 +105,8 @@ class User implements EntityInterface
 
         $stmt->execute();
 
+        $conn->close();
+
     }
 
     public function delete(int $id)
@@ -114,6 +120,8 @@ class User implements EntityInterface
         $stmt->bind_param('i', $id);
 
         $stmt->execute();
+
+        $conn->close();
 
     }
 
