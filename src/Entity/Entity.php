@@ -17,18 +17,18 @@ class Entity implements EntityInterface
         $this->entity->create();
     }
 
-    public function read()
+    public function read(int $id)
     {
-        $this->entity->read();
+        $this->entity->read($id);
     }
 
-    public function update()
+    public function update(int $id)
     {
-        $this->entity->update();
+        $this->entity->update($id);
     }
 
-    public function delete()
+    public function delete(int $id)
     {
-        $this->entity->delete();
+        $this->entity->delete($id);
     }
 }

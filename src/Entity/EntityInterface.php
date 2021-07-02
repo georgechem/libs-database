@@ -8,9 +8,9 @@ interface EntityInterface
 {
     public function create();
 
-    public function read();
+    public function read(int $id);
 
-    public function update();
+    public function update(int $id);
 
-    public function delete();
+    public function delete(int $id);
 }
