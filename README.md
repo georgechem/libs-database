@@ -27,3 +27,6 @@
 
 <hr>
 
+### *ADDITIONAL METHODS*
+
+>`User::getAll();` returns array of user Objects (All user in users);

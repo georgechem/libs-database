@@ -16,6 +16,8 @@ class User implements EntityInterface
 
     private array $role;
 
+    private static array $users = [];
+
     const TABLE_NAME = 'users';
 
     public static function createTable()
@@ -123,6 +125,24 @@ class User implements EntityInterface
 
         $conn->close();
 
+    }
+
+    public static function getAll()
+    {
+        $conn = Database::connect();
+
+        $sql = "SELECT id, username, password, role FROM ".self::TABLE_NAME;
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->execute();
+
+        $results = $stmt->get_result();
+
+        while($row = $results->fetch_object()){
+            self::$users[] = $row;
+        }
+        return self::$users;
     }
 
     public function getId(): string

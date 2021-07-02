@@ -19,10 +19,6 @@ class Database
             echo 'DB connection error';
             exit;
         }
-
         return self::$conn;
-
     }
-
-
 }
