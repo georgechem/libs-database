@@ -3,6 +3,7 @@
     "description": "database utility",
     "type": "library",
     "minimum-stability": "stable",
+    "version": "1.0.0",
     "require": {
         "php": "^8.0",
       "ext-mysqli": "*"
