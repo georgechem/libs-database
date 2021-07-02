@@ -16,19 +16,21 @@ class User implements EntityInterface
 
     private array $role;
 
+    const TABLE_NAME = 'users';
+
     public static function createTable()
     {
         $conn = Database::connect();
 
-        $sql = "CREATE TABLE users (id int NOT NULL AUTO_INCREMENT PRIMARY KEY , username varchar(255) NOT NULL, password varchar(255), role varchar(1024))";
+        $sql = "CREATE TABLE ".self::TABLE_NAME." (id int NOT NULL AUTO_INCREMENT PRIMARY KEY , username varchar(255) NOT NULL, password varchar(255), role varchar(1024))";
 
         $stmt = $conn->prepare($sql);
 
         if(!$stmt->execute()){
-            $sql = "DROP TABLE users";
+            $sql = "DROP TABLE ".self::TABLE_NAME;
             $stmt = $conn->prepare($sql);
             $stmt->execute();
-            $sql = "CREATE TABLE users (id int NOT NULL AUTO_INCREMENT PRIMARY KEY , username varchar(255) NOT NULL, password varchar(255), role varchar(1024))";
+            $sql = "CREATE TABLE ".self::TABLE_NAME." (id int NOT NULL AUTO_INCREMENT PRIMARY KEY , username varchar(255) NOT NULL, password varchar(255), role varchar(1024))";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
         };
@@ -39,7 +41,7 @@ class User implements EntityInterface
     {
         $conn = Database::connect();
 
-        $sql = 'INSERT INTO users (username, password, role) VALUES (?, ?, ?)';
+        $sql = "INSERT INTO ".self::TABLE_NAME." (username, password, role) VALUES (?, ?, ?)";
 
         $stmt = $conn->prepare($sql);
 
@@ -61,7 +63,7 @@ class User implements EntityInterface
     {
         $conn = Database::connect();
 
-        $sql = "SELECT id, username, password, role FROM users WHERE id=?";
+        $sql = "SELECT id, username, password, role FROM ".self::TABLE_NAME." WHERE id=?";
 
         $stmt = $conn->prepare($sql);
 
@@ -85,7 +87,7 @@ class User implements EntityInterface
     {
         $conn = Database::connect();
 
-        $sql = "UPDATE users SET username=?, password=?, role=? WHERE id=?";
+        $sql = "UPDATE ".self::TABLE_NAME." SET username=?, password=?, role=? WHERE id=?";
 
         $stmt = $conn->prepare($sql);
 
@@ -103,7 +105,16 @@ class User implements EntityInterface
 
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        $conn = Database::connect();
+
+        $sql = "DELETE FROM ".self::TABLE_NAME." WHERE id=?";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bind_param('i', $id);
+
+        $stmt->execute();
+
     }
 
     public function getId(): string
