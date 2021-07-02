@@ -44,7 +44,8 @@ class User implements EntityInterface
         $stmt = $conn->prepare($sql);
 
         if(!isset($this->username) || !isset($this->password) || !isset($this->role)){
-            echo 'Object is not prepared for INSERT - Missing fileds';
+            //TODO exception
+            echo 'Object is not prepared for INSERT - Missing fields';
             exit;
         }
         $roles = json_encode($this->role);
@@ -82,7 +83,22 @@ class User implements EntityInterface
 
     public function update(int $id)
     {
-        // TODO: Implement update() method.
+        $conn = Database::connect();
+
+        $sql = "UPDATE users SET username=?, password=?, role=? WHERE id=?";
+
+        $stmt = $conn->prepare($sql);
+
+        if(!isset($this->username) || !isset($this->password) || !isset($this->role)){
+            //TODO exception
+            echo 'Object is not prepared for UPDATE - Missing fields';
+            exit;
+        }
+        $roles = json_encode($this->role);
+        $stmt->bind_param('sssi', $this->username, $this->password, $roles, $id);
+
+        $stmt->execute();
+
     }
 
     public function delete(int $id)
