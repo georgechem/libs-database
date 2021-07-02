@@ -2,7 +2,7 @@
     "name": "etutor/database",
     "description": "database utility",
     "type": "library",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "version": "1.0.0",
     "require": {
         "php": "^8.0",
