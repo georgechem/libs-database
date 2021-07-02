@@ -5,23 +5,30 @@ namespace App\Entity;
 class Entity implements EntityInterface
 {
 
+    private EntityInterface $entity;
+
+    public function __construct(EntityInterface $entity)
+    {
+        $this->entity = $entity;
+    }
+
     public function create()
     {
-        // TODO: Implement create() method.
+        $this->entity->create();
     }
 
     public function read()
     {
-        // TODO: Implement read() method.
+        $this->entity->read();
     }
 
     public function update()
     {
-        // TODO: Implement update() method.
+        $this->entity->update();
     }
 
     public function delete()
     {
-        // TODO: Implement delete() method.
+        $this->entity->delete();
     }
 }
