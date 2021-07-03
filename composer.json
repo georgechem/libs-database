@@ -16,6 +16,7 @@
             "App\\Tests\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
