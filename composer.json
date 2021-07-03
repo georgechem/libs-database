@@ -1,7 +1,7 @@
 {
     "name": "etutor/database",
     "description": "database utility",
-    "type": "library",
+    "type": "project",
     "version": "1.0.0",
     "require": {
         "php": "^8.0.0",
